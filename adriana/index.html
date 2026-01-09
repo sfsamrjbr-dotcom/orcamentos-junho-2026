@@ -17,7 +17,6 @@
             background-color: #1A3A32;
         }
         
-        /* Slide Container */
         .slides-wrapper {
             width: 100%;
             height: 100%;
@@ -34,6 +33,7 @@
             left: 0;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
+            padding: 40px;
         }
         
         .slide.active {
@@ -41,7 +41,6 @@
             flex-direction: column;
         }
         
-        /* Navigation */
         .nav-buttons {
             position: fixed;
             bottom: 20px;
@@ -87,276 +86,175 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 40px 20px;
             background: linear-gradient(135deg, #1A3A32 0%, #2D5A4A 100%);
-        }
-        
-        .cover-slide .logo-area {
-            margin-bottom: 30px;
         }
         
         .cover-slide h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(28px, 6vw, 48px);
-            color: #F4F1EA;
-            margin-bottom: 10px;
-        }
-        
-        .cover-slide .subtitle {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(12px, 3vw, 16px);
-            color: #C4A484;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-        }
-        
-        .cover-slide .dates {
-            font-size: clamp(16px, 4vw, 24px);
+            font-size: 48px;
             color: #F4F1EA;
             margin-bottom: 20px;
         }
         
-        .cover-slide .guests {
-            font-size: clamp(14px, 3vw, 18px);
+        .cover-slide p {
+            font-size: 18px;
             color: #C4A484;
+            margin: 10px 0;
         }
         
-        /* Villa Slides */
+        /* Villa Slide */
         .villa-slide {
-            padding: 20px;
-            padding-bottom: 100px;
+            justify-content: flex-start;
+            padding-top: 30px;
         }
         
         .villa-header {
-            text-align: center;
             margin-bottom: 20px;
         }
         
-        .villa-header .section-label {
-            font-family: 'Montserrat', sans-serif;
+        .section-label {
             font-size: 12px;
             color: #C4A484;
-            letter-spacing: 2px;
             text-transform: uppercase;
+            letter-spacing: 2px;
             margin-bottom: 5px;
         }
         
         .villa-header h2 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(24px, 5vw, 36px);
+            font-size: 36px;
             color: #1A3A32;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
         
-        .villa-header .specs {
+        .specs {
             font-size: 14px;
-            color: #4A5D54;
+            color: #666;
         }
         
-        /* Gallery */
         .gallery {
-            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            max-height: 300px;
         }
         
         .main-image {
-            width: 100%;
-            height: auto;
-            max-height: 300px;
-            border-radius: 8px;
+            flex: 1;
             overflow: hidden;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #E8E4DC;
+            border-radius: 8px;
         }
         
         .main-image img {
             width: 100%;
-            height: auto;
-            max-height: 300px;
-            object-fit: contain;
+            height: 100%;
+            object-fit: cover;
         }
         
         .thumbnails {
             display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 5px;
+            flex-direction: column;
+            gap: 10px;
+            width: 80px;
         }
         
         .thumbnails img {
-            width: 70px;
-            height: 50px;
-            object-fit: contain;
-            background: #E8E4DC;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
             border-radius: 4px;
             cursor: pointer;
-            opacity: 0.6;
             border: 2px solid transparent;
-            flex-shrink: 0;
+            transition: border-color 0.3s;
         }
         
         .thumbnails img.active {
-            opacity: 1;
             border-color: #C4A484;
         }
         
-        /* Dates Box */
         .dates-box {
-            background: rgba(26, 58, 50, 0.05);
-            padding: 12px 15px;
-            border-radius: 8px;
             display: flex;
-            justify-content: space-around;
-            margin-bottom: 15px;
+            gap: 20px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f0ebe5;
+            border-radius: 8px;
         }
         
         .date-item {
-            text-align: center;
-            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
             color: #1A3A32;
         }
         
         .date-item i {
             color: #C4A484;
-            margin-right: 5px;
         }
         
-        .date-item strong {
-            display: block;
-            font-size: 15px;
-            margin-top: 3px;
-        }
-        
-        /* Description */
         .description {
+            margin: 20px 0;
             font-size: 14px;
-            color: #4A5D54;
             line-height: 1.6;
-            margin-bottom: 15px;
+            color: #333;
         }
         
-        /* Amenities */
-        .amenities {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .amenity {
-            display: flex;
-            align-items: center;
-            font-size: 13px;
-            color: #1A3A32;
-        }
-        
-        .amenity i {
-            color: #C4A484;
-            margin-right: 8px;
-            width: 18px;
-        }
-        
-        /* Pricing */
         .pricing-box {
-            background: #E8E4DC;
-            padding: 15px;
+            background: #f0ebe5;
+            padding: 20px;
             border-radius: 8px;
-            border-left: 4px solid #1A3A32;
+            margin-top: 20px;
         }
         
         .pricing-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            font-weight: bold;
+            color: #1A3A32;
             margin-bottom: 15px;
-        }
-        
-        .pricing-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 11px;
-            color: #4A5D54;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-        }
-        
-        .promo-tag {
-            background: #C4A484;
-            color: #fff;
-            font-size: 10px;
-            padding: 4px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            font-weight: 700;
+            border-bottom: 2px solid #C4A484;
+            padding-bottom: 10px;
         }
         
         .price-group {
-            margin-bottom: 12px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid rgba(26, 58, 50, 0.1);
-        }
-        
-        .price-group:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
+            margin-bottom: 15px;
         }
         
         .group-label {
-            font-size: 14px;
-            color: #1A3A32;
-            font-weight: 700;
-            margin-bottom: 5px;
+            font-size: 12px;
+            color: #C4A484;
+            text-transform: uppercase;
+            margin-bottom: 8px;
         }
         
         .calc-row {
             display: flex;
             justify-content: space-between;
-            font-size: 12px;
-            color: #4A5D54;
-            margin-bottom: 2px;
-        }
-        
-        .free-night {
-            color: #C4A484;
-            font-weight: 700;
+            font-size: 14px;
+            margin: 5px 0;
+            color: #333;
         }
         
         .total-row {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
-            margin-top: 8px;
-        }
-        
-        .total-label {
-            font-size: 11px;
-            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 16px;
             color: #1A3A32;
-        }
-        
-        .total-value {
-            font-family: 'Playfair Display', serif;
-            font-size: 20px;
-            color: #1A3A32;
-            font-weight: 700;
+            border-top: 2px solid #C4A484;
+            padding-top: 10px;
+            margin-top: 10px;
         }
         
         /* Summary Slide */
         .summary-slide {
-            padding: 30px 20px;
-            padding-bottom: 100px;
+            justify-content: flex-start;
         }
         
         .summary-slide h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 28px;
+            font-size: 36px;
             color: #1A3A32;
-            text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
         
         .summary-table {
@@ -368,25 +266,53 @@
         .summary-table th {
             background: #1A3A32;
             color: #F4F1EA;
-            padding: 10px;
+            padding: 12px;
             text-align: left;
-            font-size: 12px;
-            font-weight: 700;
+            font-weight: bold;
         }
         
         .summary-table td {
-            padding: 10px;
-            border-bottom: 1px solid #E8E4DC;
-            font-size: 13px;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
         }
         
-        .summary-table tr:last-child td {
-            border-bottom: none;
+        .summary-table tr:nth-child(even) {
+            background: #f9f7f4;
         }
         
         .summary-table .total-row {
-            background: #E8E4DC;
-            font-weight: 700;
+            background: #1A3A32;
+            color: #F4F1EA;
+            font-weight: bold;
+        }
+        
+        /* Amenities */
+        .amenities {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .amenity {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px;
+            background: #f0ebe5;
+            border-radius: 8px;
+        }
+        
+        .amenity i {
+            color: #C4A484;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .amenity span {
+            font-size: 14px;
+            line-height: 1.4;
+            color: #333;
         }
         
         /* Closing Slide */
@@ -394,29 +320,26 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 40px 20px;
+            background: linear-gradient(135deg, #1A3A32 0%, #2D5A4A 100%);
         }
         
         .closing-slide h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            color: #1A3A32;
+            font-size: 48px;
+            color: #C4A484;
             margin-bottom: 20px;
         }
         
         .closing-slide p {
             font-size: 16px;
-            color: #4A5D54;
-            margin-bottom: 20px;
-            line-height: 1.6;
+            color: #F4F1EA;
+            margin: 10px 0;
         }
         
-        .closing-slide .tagline {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
+        .tagline {
+            font-style: italic;
             color: #C4A484;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            margin-top: 20px !important;
         }
     </style>
 </head>
@@ -424,16 +347,16 @@
     <div class="slides-wrapper">
         <!-- Slide 1: Capa -->
         <div class="slide active cover-slide">
-            <div class="logo-area">
+            <div>
                 <i class="fas fa-sun" style="font-size: 40px; color: #C4A484; margin-bottom: 20px;"></i>
+                <h1>Adriana Hvar Resort</h1>
+                <p>Croácia - Ilha de Hvar</p>
+                <p>21 a 25 de junho de 2026</p>
+                <p>2 Adultos</p>
             </div>
-            <h1>Adriana Hvar Resort</h1>
-            <p class="subtitle">Croácia - Ilha de Hvar</p>
-            <p class="dates">21 a 25 de junho de 2026</p>
-            <p class="guests">2 Adultos</p>
         </div>
         
-        <!-- Slide 2: Hotel -->
+        <!-- Slide 2: O Resort -->
         <div class="slide villa-slide">
             <div class="villa-header">
                 <p class="section-label">O Resort</p>
@@ -442,13 +365,13 @@
             </div>
             <div class="gallery">
                 <div class="main-image">
-                    <img src="images/hotel_fachada.jpg?v=2" alt="Adriana Hvar Resort" style="width: 100%; height: auto; max-height: 300px; object-fit: cover; border-radius: 8px;">
+                    <img src="images/hotel_fachada.jpg" alt="Adriana Hvar Resort" style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
                 </div>
             </div>
             <div class="description">
                 <p>O Adriana Hvar Resort é um luxuoso spa resort localizado na pitoresca Ilha de Hvar, na Croácia. Com uma localização privilegiada à beira-mar, oferece uma experiência única de relaxamento e elegância, combinando o melhor da hospitalidade europeia com vistas espetaculares do Adriático.</p>
             </div>
-            <div class="amenities">
+            <div class="amenities" style="grid-template-columns: repeat(3, 1fr);">
                 <div class="amenity">
                     <i class="fas fa-spa"></i>
                     <span>Spa de Luxo</span>
@@ -476,130 +399,76 @@
             </div>
         </div>
         
-        <!-- Slide 4: Superior Room (Básico) -->
-        <div class="slide villa-slide">
-            <div class="villa-header">
-                <p class="section-label">Acomodação Básica</p>
-                <h2>Superior Room</h2>
-                <p class="specs">21 m² | 1-2 Pessoas | Sem Café</p>
-            </div>
-            <div class="gallery" style="display: none;">
-                <div class="main-image">
-                    <img id="mainImage3" src="images/suite_1.jpg?v=2" alt="Superior Room">
-                </div>
-                <div class="thumbnails">
-                    <img src="images/suite_1.jpg?v=2" class="active" onclick="changeImage(this, 3)">
-                    <img src="images/suite_2.jpg?v=2" onclick="changeImage(this, 3)">
-                    <img src="images/suite_3.jpg?v=2" onclick="changeImage(this, 3)">
-                </div>
-            </div>
-            <div class="dates-box">
-                <div class="date-item">
-                    <i class="fas fa-arrow-right"></i>
-                    <strong>21 Jun</strong>
-                </div>
-                <div class="date-item">
-                    <i class="fas fa-arrow-left"></i>
-                    <strong>25 Jun</strong>
-                </div>
-                <div class="date-item">
-                    <i class="fas fa-moon"></i>
-                    <strong>4 Noites</strong>
-                </div>
-            </div>
-            <div class="description">
-                <p>Quarto confortável e elegante com vista para o mar. Decoração moderna, banheiro com amenidades, e acesso a todas as facilidades do resort incluindo spa e piscina. Café não incluído.</p>
-            </div>
-            <div class="pricing-box">
-                <div class="pricing-header">
-                    <span class="pricing-title">Valor da Acomodação</span>
-                </div>
-                <div class="price-group">
-                    <div class="group-label">Diárias</div>
-                    <div class="calc-row">
-                        <span>4 noites × €531,29</span>
-                        <span>€2.125,15</span>
-                    </div>
-                    <div class="calc-row" style="color: #C4A484; font-size: 11px; margin-top: 5px;">
-                        <span>(R$ 12.963,42)</span>
-                    </div>
-                </div>
-                <div class="total-row">
-                    <span class="total-label">Total Superior Room</span>
-                    <span class="total-value">€2.125,15 / R$ 12.963</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Slide 5: Spa Suite (Intermediário) -->
-        <div class="slide villa-slide">
-            <div class="villa-header">
-                <p class="section-label">Acomodação Intermediária</p>
-                <h2>Spa Suite</h2>
-                <p class="specs">42 m² | 1-4 Pessoas | Com Café</p>
-            </div>
-            <div class="gallery">
-                <div class="main-image">
-                    <img id="mainImage4" src="images/suite_2.jpg?v=2" alt="Spa Suite">
-                </div>
-                <div class="thumbnails">
-                    <img src="images/suite_2.jpg?v=2" class="active" onclick="changeImage(this, 4)">
-                    <img src="images/suite_3.jpg?v=2" onclick="changeImage(this, 4)">
-                    <img src="images/suite_4.jpg?v=2" onclick="changeImage(this, 4)">
-                </div>
-            </div>
-            <div class="dates-box">
-                <div class="date-item">
-                    <i class="fas fa-arrow-right"></i>
-                    <strong>21 Jun</strong>
-                </div>
-                <div class="date-item">
-                    <i class="fas fa-arrow-left"></i>
-                    <strong>25 Jun</strong>
-                </div>
-                <div class="date-item">
-                    <i class="fas fa-moon"></i>
-                    <strong>4 Noites</strong>
-                </div>
-            </div>
-            <div class="description">
-                <p>Suíte elegante com vista panorâmica para o Adriático. Banheiro com amenidades de luxo, acesso ao spa, e serviços personalizados. Café da manhã completo incluído.</p>
-            </div>
-            <div class="pricing-box">
-                <div class="pricing-header">
-                    <span class="pricing-title">Valor da Suíte</span>
-                </div>
-                <div class="price-group">
-                    <div class="group-label">Diárias</div>
-                    <div class="calc-row">
-                        <span>4 noites × €750</span>
-                        <span>€3.000</span>
-                    </div>
-                    <div class="calc-row" style="color: #C4A484; font-size: 11px; margin-top: 5px;">
-                        <span>(R$ 18.300)</span>
-                    </div>
-                </div>
-                <div class="total-row">
-                    <span class="total-label">Total Spa Suite</span>
-                    <span class="total-value">€3.000 / R$ 18.300</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Slide 6: Adriana Terrace Spa Suite (Luxo) -->
+        <!-- Slide 3: Penthouse Suite (Premium) -->
         <div class="slide villa-slide">
             <div class="villa-header">
                 <p class="section-label">Acomodação Premium</p>
+                <h2>Penthouse Suite, Balcony, Sea View</h2>
+                <p class="specs">36-42 m² | 1-2 Pessoas | Com Café</p>
+            </div>
+            <div class="gallery">
+                <div class="main-image">
+                    <img id="mainImage3" src="images/penthouse_1.jpg" alt="Penthouse Suite">
+                </div>
+                <div class="thumbnails">
+                    <img src="images/penthouse_1.jpg" class="active" onclick="changeImage(this, 3)">
+                    <img src="images/penthouse_2.jpg" onclick="changeImage(this, 3)">
+                    <img src="images/penthouse_3.jpg" onclick="changeImage(this, 3)">
+                    <img src="images/penthouse_4.jpg" onclick="changeImage(this, 3)">
+                    <img src="images/penthouse_5.jpg" onclick="changeImage(this, 3)">
+                    <img src="images/penthouse_6.jpg" onclick="changeImage(this, 3)">
+                </div>
+            </div>
+            <div class="dates-box">
+                <div class="date-item">
+                    <i class="fas fa-arrow-right"></i>
+                    <strong>21 Jun</strong>
+                </div>
+                <div class="date-item">
+                    <i class="fas fa-arrow-left"></i>
+                    <strong>25 Jun</strong>
+                </div>
+                <div class="date-item">
+                    <i class="fas fa-moon"></i>
+                    <strong>4 Noites</strong>
+                </div>
+            </div>
+            <div class="description">
+                <p>A suíte mais luxuosa do resort! Penthouse com varanda privativa e vista deslumbrante para o mar de Hvar. Decoração de alta classe, banheiro spa, mini-bar, TV por satélite, Wi-Fi, serviço de quarto 24h e café da manhã incluído. Acesso prioritário a todas as facilidades.</p>
+            </div>
+            <div class="pricing-box">
+                <div class="pricing-header">Valor da Acomodação</div>
+                <div class="price-group">
+                    <div class="group-label">Diárias</div>
+                    <div class="calc-row">
+                        <span>4 noites × €987,38</span>
+                        <span>€3.948,52</span>
+                    </div>
+                    <div class="calc-row" style="color: #C4A484; font-size: 11px;">
+                        <span>(R$ 24.106,57)</span>
+                    </div>
+                </div>
+                <div class="total-row">
+                    <span>Total Penthouse Suite</span>
+                    <span>€3.948,52 / R$ 24.107</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 4: Adriana Terrace Spa Suite (Luxo) -->
+        <div class="slide villa-slide">
+            <div class="villa-header">
+                <p class="section-label">Acomodação Luxo</p>
                 <h2>Adriana Terrace Spa Suite</h2>
                 <p class="specs">42 m² | 1-4 Pessoas | Com Café</p>
             </div>
             <div class="gallery">
                 <div class="main-image">
-                    <img id="mainImage4" src="images/suite_3.jpg?v=2" alt="Adriana Terrace Spa Suite">
+                    <img id="mainImage4" src="images/suite_3.jpg" alt="Adriana Terrace Spa Suite">
                 </div>
                 <div class="thumbnails">
-                    <img src="images/suite_3.jpg?v=2" class="active" onclick="changeImage(this, 4)">
-                    <img src="images/suite_4.jpg?v=2" onclick="changeImage(this, 4)">
+                    <img src="images/suite_3.jpg" class="active" onclick="changeImage(this, 4)">
+                    <img src="images/suite_4.jpg" onclick="changeImage(this, 4)">
                 </div>
             </div>
             <div class="dates-box">
@@ -620,22 +489,116 @@
                 <p>Suíte premium com terraço privado e vista espetacular para o Adriático. Banheiro de mármol com amenidades de luxo, acesso VIP ao spa, e serviços concierge personalizados. Café da manhã completo incluído.</p>
             </div>
             <div class="pricing-box">
-                <div class="pricing-header">
-                    <span class="pricing-title">Valor da Suíte Premium</span>
-                </div>
+                <div class="pricing-header">Valor da Suíte Premium</div>
                 <div class="price-group">
                     <div class="group-label">Diárias</div>
                     <div class="calc-row">
                         <span>4 noites × €1.000</span>
                         <span>€4.000</span>
                     </div>
-                    <div class="calc-row" style="color: #C4A484; font-size: 11px; margin-top: 5px;">
+                    <div class="calc-row" style="color: #C4A484; font-size: 11px;">
                         <span>(R$ 24.400)</span>
                     </div>
                 </div>
                 <div class="total-row">
-                    <span class="total-label">Total Adriana Terrace Spa Suite</span>
-                    <span class="total-value">€4.000 / R$ 24.400</span>
+                    <span>Total Adriana Terrace Spa Suite</span>
+                    <span>€4.000 / R$ 24.400</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 5: Spa Suite (Intermediário) -->
+        <div class="slide villa-slide">
+            <div class="villa-header">
+                <p class="section-label">Acomodação Intermediária</p>
+                <h2>Spa Suite</h2>
+                <p class="specs">42 m² | 1-4 Pessoas | Com Café</p>
+            </div>
+            <div class="gallery">
+                <div class="main-image">
+                    <img id="mainImage5" src="images/suite_2.jpg" alt="Spa Suite">
+                </div>
+                <div class="thumbnails">
+                    <img src="images/suite_2.jpg" class="active" onclick="changeImage(this, 5)">
+                    <img src="images/suite_3.jpg" onclick="changeImage(this, 5)">
+                    <img src="images/suite_4.jpg" onclick="changeImage(this, 5)">
+                </div>
+            </div>
+            <div class="dates-box">
+                <div class="date-item">
+                    <i class="fas fa-arrow-right"></i>
+                    <strong>21 Jun</strong>
+                </div>
+                <div class="date-item">
+                    <i class="fas fa-arrow-left"></i>
+                    <strong>25 Jun</strong>
+                </div>
+                <div class="date-item">
+                    <i class="fas fa-moon"></i>
+                    <strong>4 Noites</strong>
+                </div>
+            </div>
+            <div class="description">
+                <p>Suíte elegante com vista panorâmica para o Adriático. Banheiro com amenidades de luxo, acesso ao spa, e serviços personalizados. Café da manhã completo incluído.</p>
+            </div>
+            <div class="pricing-box">
+                <div class="pricing-header">Valor da Suíte</div>
+                <div class="price-group">
+                    <div class="group-label">Diárias</div>
+                    <div class="calc-row">
+                        <span>4 noites × €750</span>
+                        <span>€3.000</span>
+                    </div>
+                    <div class="calc-row" style="color: #C4A484; font-size: 11px;">
+                        <span>(R$ 18.300)</span>
+                    </div>
+                </div>
+                <div class="total-row">
+                    <span>Total Spa Suite</span>
+                    <span>€3.000 / R$ 18.300</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 6: Superior Room (Básico) -->
+        <div class="slide villa-slide">
+            <div class="villa-header">
+                <p class="section-label">Acomodação Básica</p>
+                <h2>Superior Room</h2>
+                <p class="specs">21 m² | 1-2 Pessoas | Sem Café</p>
+            </div>
+            <div class="dates-box">
+                <div class="date-item">
+                    <i class="fas fa-arrow-right"></i>
+                    <strong>21 Jun</strong>
+                </div>
+                <div class="date-item">
+                    <i class="fas fa-arrow-left"></i>
+                    <strong>25 Jun</strong>
+                </div>
+                <div class="date-item">
+                    <i class="fas fa-moon"></i>
+                    <strong>4 Noites</strong>
+                </div>
+            </div>
+            <div class="description">
+                <p>Quarto confortável e elegante com vista para o mar. Decoração moderna, banheiro com amenidades, e acesso a todas as facilidades do resort incluindo spa e piscina. Café não incluído.</p>
+            </div>
+            <div class="pricing-box">
+                <div class="pricing-header">Valor da Acomodação</div>
+                <div class="price-group">
+                    <div class="group-label">Diárias</div>
+                    <div class="calc-row">
+                        <span>4 noites × €531,29</span>
+                        <span>€2.125,15</span>
+                    </div>
+                    <div class="calc-row" style="color: #C4A484; font-size: 11px;">
+                        <span>(R$ 12.963,42)</span>
+                    </div>
+                </div>
+                <div class="total-row">
+                    <span>Total Superior Room</span>
+                    <span>€2.125,15 / R$ 12.963</span>
                 </div>
             </div>
         </div>
@@ -646,7 +609,7 @@
                 <p class="section-label">Serviços</p>
                 <h2>O Que Está Incluído</h2>
             </div>
-            <div class="amenities" style="grid-template-columns: 1fr;">
+            <div class="amenities">
                 <div class="amenity">
                     <i class="fas fa-check-circle"></i>
                     <span><strong>Café da manhã</strong> - Buffet completo diariamente</span>
@@ -678,64 +641,6 @@
             </div>
         </div>
         
-        <!-- Slide 3: Penthouse Suite -->
-        <div class="slide villa-slide">
-            <div class="villa-header">
-                <p class="section-label">Acomodação Premium</p>
-                <h2>Penthouse Suite, Balcony, Sea View</h2>
-                <p class="specs">36-42 m² | 1-2 Pessoas | Com Café</p>
-            </div>
-            <div class="gallery">
-                <div class="main-image">
-                    <img id="mainImage3" src="images/penthouse_1.jpg?v=3" alt="Penthouse Suite">
-                </div>
-                <div class="thumbnails">
-                    <img src="images/penthouse_1.jpg?v=3" class="active" onclick="changeImage(this, 3)">
-                    <img src="images/penthouse_2.jpg?v=3" onclick="changeImage(this, 3)">
-                    <img src="images/penthouse_3.jpg?v=3" onclick="changeImage(this, 3)">
-                    <img src="images/penthouse_4.jpg?v=3" onclick="changeImage(this, 3)">
-                    <img src="images/penthouse_5.jpg?v=3" onclick="changeImage(this, 3)">
-                    <img src="images/penthouse_6.jpg?v=3" onclick="changeImage(this, 3)">
-                </div>
-            </div>
-            <div class="dates-box">
-                <div class="date-item">
-                    <i class="fas fa-arrow-right"></i>
-                    <strong>21 Jun</strong>
-                </div>
-                <div class="date-item">
-                    <i class="fas fa-arrow-left"></i>
-                    <strong>25 Jun</strong>
-                </div>
-                <div class="date-item">
-                    <i class="fas fa-moon"></i>
-                    <strong>4 Noites</strong>
-                </div>
-            </div>
-            <div class="description">
-                <p>A suíte mais luxuosa do resort! Penthouse com varanda privativa e vista deslumbrante para o mar de Hvar. Decoração de alta classe, banheiro spa, mini-bar, TV por satélite, Wi-Fi, serviço de quarto 24h e café da manhã incluído. Acesso prioritário a todas as facilidades.</p>
-            </div>
-            <div class="pricing-box">
-                <div class="pricing-header">
-                    <span class="pricing-title">Valor da Acomodação</span>
-                </div>
-                <div class="price-group">
-                    <div class="group-label">Diárias</div>
-                    <div class="calc-row">
-                        <span>4 noites × €987,38</span>
-                        <span>€3.948,52</span>
-                    </div>
-                    <div class="calc-row" style="color: #C4A484; font-size: 11px; margin-top: 5px;">
-                        <span>(R$ 24.106,57)</span>
-                    </div>
-                </div>
-                <div class="total-row">
-                    <span class="total-label">Total Penthouse Suite</span>
-                    <span class="total-value">€3.948,52 / R$ 24.107</span>
-                </div>
-            </div>
-        </div>
-        
         <!-- Slide 8: Resumo do Investimento -->
         <div class="slide summary-slide">
             <h2>Resumo do Investimento</h2>
@@ -748,20 +653,20 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Superior Room - Sem Café (4 noites)</td>
-                        <td>€2.125,15 / R$ 12.963</td>
-                    </tr>
-                    <tr>
-                        <td>Spa Suite - Com Café (4 noites)</td>
-                        <td>€3.000 / R$ 18.300</td>
+                        <td>Penthouse Suite, Balcony, Sea View - Com Café (4 noites)</td>
+                        <td>€3.948,52 / R$ 24.107</td>
                     </tr>
                     <tr>
                         <td>Adriana Terrace Spa Suite - Com Café (4 noites)</td>
                         <td>€4.000 / R$ 24.400</td>
                     </tr>
                     <tr>
-                        <td>Penthouse Suite, Balcony, Sea View - Com Café (4 noites)</td>
-                        <td>€3.948,52 / R$ 24.107</td>
+                        <td>Spa Suite - Com Café (4 noites)</td>
+                        <td>€3.000 / R$ 18.300</td>
+                    </tr>
+                    <tr>
+                        <td>Superior Room - Sem Café (4 noites)</td>
+                        <td>€2.125,15 / R$ 12.963</td>
                     </tr>
                     <tr class="total-row">
                         <td><strong>TOTAL (Melhor Opção)</strong></td>
@@ -776,9 +681,11 @@
         
         <!-- Slide 9: Contato -->
         <div class="slide closing-slide">
-            <h2>Wanderlust Turismo</h2>
-            <p>Estamos à disposição para tornar sua viagem à Croácia uma experiência inesquecível.</p>
-            <p class="tagline">Sua próxima aventura começa aqui</p>
+            <div>
+                <h2>Wanderlust Turismo</h2>
+                <p>Estamos à disposição para tornar sua viagem à Croácia uma experiência inesquecível.</p>
+                <p class="tagline">Sua próxima aventura começa aqui</p>
+            </div>
         </div>
     </div>
     
@@ -794,45 +701,45 @@
             <i class="fas fa-chevron-right"></i>
         </button>
     </div>
-
+    
     <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
         
         function showSlide(n) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[n].classList.add('active');
-            
-            document.getElementById('currentSlide').textContent = n + 1;
-            document.getElementById('prevBtn').disabled = n === 0;
-            document.getElementById('nextBtn').disabled = n === totalSlides - 1;
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide + 1;
+            updateNavButtons();
         }
         
         function changeSlide(direction) {
-            currentSlide += direction;
-            if (currentSlide >= 0 && currentSlide < totalSlides) {
-                showSlide(currentSlide);
-            }
+            showSlide(currentSlide + direction);
         }
         
         function changeImage(img, slideNum) {
             const mainImage = document.getElementById('mainImage' + slideNum);
-            const thumbnails = img.parentElement.querySelectorAll('img');
-            thumbnails.forEach(thumb => thumb.classList.remove('active'));
-            img.classList.add('active');
-            mainImage.src = img.src;
+            if (mainImage) {
+                mainImage.src = img.src;
+                document.querySelectorAll('.thumbnails img').forEach(thumb => thumb.classList.remove('active'));
+                img.classList.add('active');
+            }
+        }
+        
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
         }
         
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') changeSlide(1);
             if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
         });
         
-        // Initialize
-        document.getElementById('totalSlides').textContent = totalSlides;
-        showSlide(0);
+        updateNavButtons();
     </script>
 </body>
 </html>
