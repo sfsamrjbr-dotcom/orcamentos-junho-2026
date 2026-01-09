@@ -1,0 +1,9 @@
+plugins:
+  - jekyll-redirect-from
+
+exclude:
+  - .gitignore
+  - README.md
+
+# Disable Jekyll processing
+future: true
