@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>One&Only Portonovi - Proposta de Hospedagem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Lato', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            background-color: #1A3A32;
+        }
+        
+        /* Slide Container */
+        .slides-wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            background-color: #F4F1EA;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Navigation */
+        .nav-buttons {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+            background: rgba(26, 58, 50, 0.9);
+            padding: 10px 20px;
+            border-radius: 30px;
+        }
+        
+        .nav-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: none;
+            background: #C4A484;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .slide-counter {
+            color: #fff;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+        
+        /* Cover Slide */
+        .cover-slide {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #1A3A32 0%, #2D5A4A 100%);
+        }
+        
+        .cover-slide .logo-area {
+            margin-bottom: 30px;
+        }
+        
+        .cover-slide h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 6vw, 48px);
+            color: #F4F1EA;
+            margin-bottom: 10px;
+        }
+        
+        .cover-slide .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(12px, 3vw, 16px);
+            color: #C4A484;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+        
+        .cover-slide .dates {
+            font-size: clamp(16px, 4vw, 24px);
+            color: #F4F1EA;
+            margin-bottom: 20px;
+        }
+        
+        .cover-slide .guests {
+            font-size: clamp(14px, 3vw, 18px);
+            color: #C4A484;
+        }
+        
+        /* Villa Slides */
+        .villa-slide {
+            padding: 20px;
+            padding-bottom: 100px;
+        }
+        
+        .villa-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .villa-header .section-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: #C4A484;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        
+        .villa-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(24px, 5vw, 36px);
+            color: #1A3A32;
+            margin-bottom: 5px;
+        }
+        
+        .villa-header .specs {
+            font-size: 14px;
+            color: #4A5D54;
+        }
+        
+        /* Gallery */
+        .gallery {
+            margin-bottom: 20px;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #E8E4DC;
+        }
+        
+        .main-image img {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: contain;
+        }
+        
+        .thumbnails {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+        
+        .thumbnails img {
+            width: 70px;
+            height: 50px;
+            object-fit: contain;
+            background: #E8E4DC;
+            border-radius: 4px;
+            cursor: pointer;
+            opacity: 0.6;
+            border: 2px solid transparent;
+            flex-shrink: 0;
+        }
+        
+        .thumbnails img.active {
+            opacity: 1;
+            border-color: #C4A484;
+        }
+        
+        /* Dates Box */
+        .dates-box {
+            background: rgba(26, 58, 50, 0.05);
+            padding: 12px 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 15px;
+        }
+        
+        .date-item {
+            text-align: center;
+            font-size: 13px;
+            color: #1A3A32;
+        }
+        
+        .date-item i {
+            color: #C4A484;
+            margin-right: 5px;
+        }
+        
+        .date-item strong {
+            display: block;
+            font-size: 15px;
+            margin-top: 3px;
+        }
+        
+        /* Description */
+        .description {
+            font-size: 14px;
+            color: #4A5D54;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        /* Amenities */
+        .amenities {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .amenity {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: #1A3A32;
+        }
+        
+        .amenity i {
+            color: #C4A484;
+            margin-right: 8px;
+            width: 18px;
+        }
+        
+        /* Pricing */
+        .pricing-box {
+            background: #E8E4DC;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #1A3A32;
+        }
+        
+        .pricing-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .pricing-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            color: #4A5D54;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        
+        .promo-tag {
+            background: #C4A484;
+            color: #fff;
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        
+        .price-group {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(26, 58, 50, 0.1);
+        }
+        
+        .price-group:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .group-label {
+            font-size: 14px;
+            color: #1A3A32;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #4A5D54;
+            margin-bottom: 2px;
+        }
+        
+        .free-night {
+            color: #C4A484;
+            font-weight: 700;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-top: 8px;
+        }
+        
+        .total-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #1A3A32;
+        }
+        
+        .total-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #1A3A32;
+            font-weight: 700;
+        }
+        
+        /* Summary Slide */
+        .summary-slide {
+            padding: 30px 20px;
+            padding-bottom: 100px;
+        }
+        
+        .summary-slide h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #1A3A32;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .summary-table th {
+            background: #1A3A32;
+            color: #F4F1EA;
+            padding: 10px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
+        .summary-table td {
+            padding: 10px;
+            border-bottom: 1px solid #E8E4DC;
+            font-size: 13px;
+        }
+        
+        .summary-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .summary-table .total-row {
+            background: #E8E4DC;
+            font-weight: 700;
+        }
+        
+        /* Closing Slide */
+        .closing-slide {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .closing-slide h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: #1A3A32;
+            margin-bottom: 20px;
+        }
+        
+        .closing-slide p {
+            font-size: 16px;
+            color: #4A5D54;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .closing-slide .tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: #C4A484;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="slides-wrapper">
+        <!-- Slide 1: Capa -->
+        <div class="slide active cover-slide">
+            <div class="logo-area">
+                <i class="fas fa-gem" style="font-size: 40px; color: #C4A484; margin-bottom: 20px;"></i>
+            </div>
+            <h1>One&Only Portonovi</h1>
+            <p class="subtitle">Montenegro - Baía de Kotor</p>
+            <p class="dates">25 a 27 de junho de 2026</p>
+            <p class="guests">2 Adultos</p>
+        </div>
+        
+        <!-- Slide 2: Resort -->
+        <div class="slide villa-slide">
+            <div class="villa-header">
+                <p class="section-label">O Resort</p>
+                <h2>One&Only Portonovi</h2>
+                <p class="specs">Luxury Resort na Baía de Kotor</p>
+            </div>
+            <div class="gallery">
+                <div class="main-image">
+                    <img src="images/hotel_fachada.jpg" alt="One&Only Portonovi" style="width: 100%; height: auto; max-height: 300px; object-fit: cover; border-radius: 8px;">
+                </div>
+            </div>
+            <div class="description">
+                <p>O One&Only Portonovi é um resort de luxo ultra-moderno localizado na famosa Baía de Kotor, em Montenegro. Com arquitetura contemporânea, design de classe mundial e serviços impecáveis, oferece uma experiência incomparável de luxo à beira-mar no Mediterrâneo.</p>
+            </div>
+            <div class="amenities">
+                <div class="amenity">
+                    <i class="fas fa-spa"></i>
+                    <span>Spa de Luxo</span>
+                </div>
+                <div class="amenity">
+                    <i class="fas fa-swimming-pool"></i>
+                    <span>Piscina Infinity</span>
+                </div>
+                <div class="amenity">
+                    <i class="fas fa-utensils"></i>
+                    <span>Restaurantes Premiados</span>
+                </div>
+                <div class="amenity">
+                    <i class="fas fa-wine-glass"></i>
+                    <span>Bar e Lounge</span>
+                </div>
+                <div class="amenity">
+                    <i class="fas fa-beach"></i>
+                    <span>Praia Privada</span>
+                </div>
+                <div class="amenity">
+                    <i class="fas fa-star"></i>
+                    <span>Avaliação: 4.9/5</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 3: Quarto Simples -->
+        <div class="slide villa-slide">
+            <div class="villa-header">
+                <p class="section-label">Acomodação Básica</p>
+                <h2>Deluxe Room</h2>
+                <p class="specs">40 m² | 1-2 Pessoas | Sem Café</p>
+            </div>
+            <div class="gallery">
+                <div class="main-image">
+                    <img id="mainImage3" src="images/suite_1.jpg" alt="Deluxe Room">
+                </div>
+                <div class="thumbnails">
+                    <img src="images/suite_1.jpg" class="active" onclick="changeImage(this, 3)">
+                    <img src="images/suite_2.jpg" onclick="changeImage(this, 3)">
+                </div>
+            </div>
+            <div class="dates-box">
+                <div class="date-item">
+                    <i class="fas fa-arrow-right"></i>
+                    <strong>25 Jun</strong>
+                </div>
+                <div class="date-item">
+                    <i class="fas fa-arrow-left"></i>
+                    <strong>27 Jun</strong>
+                </div>
+                <div class="date-item">
+                    <i class="fas fa-moon"></i>
+                    <strong>2 Noites</strong>
+                </div>
+            </div>
+            <div class="description">
+                <p>Quarto elegante com vista para a Baía de Kotor. Decoração moderna, banheiro com amenidades premium, e acesso a todas as facilidades do resort. Café não incluído.</p>
+            </div>
+            <div class="pricing-box">
+                <div class="pricing-header">
+                    <span class="pricing-title">Valor da Acomodação</span>
+                </div>
+                <div class="price-group">
+                    <div class="group-label">Diárias</div>
+                    <div class="calc-row">
+                        <span>2 noites × $1.000</span>
+                        <span>$2.000</span>
+                    </div>
+                </div>
+                <div class="total-row">
+                    <span class="total-label">Total Deluxe Room</span>
+                    <span class="total-value">$2.000</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 4: Quarto Intermediário -->
+        <div class="slide villa-slide">
+            <div class="villa-header">
+                <p class="section-label">Acomodação Intermediária</p>
+                <h2>Suite</h2>
+                <p class="specs">60 m² | 1-4 Pessoas | Com Café</p>
+            </div>
+            <div class="gallery">
+                <div class="main-image">
+                    <img id="mainImage4" src="images/suite_2.jpg" alt="Suite">
+                </div>
+                <div class="thumbnails">
+                    <img src="images/suite_2.jpg" class="active" onclick="changeImage(this, 4)">
+                    <img src="images/suite_3.jpg" onclick="changeImage(this, 4)">
+                </div>
+            </div>
+            <div class="dates-box">
+                <div class="date-item">
+                    <i class="fas fa-arrow-right"></i>
+                    <strong>25 Jun</strong>
+                </div>
+                <div class="date-item">
+                    <i class="fas fa-arrow-left"></i>
+                    <strong>27 Jun</strong>
+                </div>
+                <div class="date-item">
+                    <i class="fas fa-moon"></i>
+                    <strong>2 Noites</strong>
+                </div>
+            </div>
+            <div class="description">
+                <p>Suíte espaçosa com vista panorâmica para a baía. Banheiro de mármol com amenidades de luxo, acesso prioritário ao spa, e serviços personalizados. Café da manhã completo incluído.</p>
+            </div>
+            <div class="pricing-box">
+                <div class="pricing-header">
+                    <span class="pricing-title">Valor da Suíte</span>
+                </div>
+                <div class="price-group">
+                    <div class="group-label">Diárias</div>
+                    <div class="calc-row">
+                        <span>2 noites × $1.500</span>
+                        <span>$3.000</span>
+                    </div>
+                </div>
+                <div class="total-row">
+                    <span class="total-label">Total Suite</span>
+                    <span class="total-value">$3.000</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 5: Melhor Quarto -->
+        <div class="slide villa-slide">
+            <div class="villa-header">
+                <p class="section-label">Acomodação Premium</p>
+                <h2>Presidential Suite</h2>
+                <p class="specs">100+ m² | 1-4 Pessoas | Com Café</p>
+            </div>
+            <div class="gallery">
+                <div class="main-image">
+                    <img id="mainImage5" src="images/suite_3.jpg" alt="Presidential Suite">
+                </div>
+                <div class="thumbnails">
+                    <img src="images/suite_3.jpg" class="active" onclick="changeImage(this, 5)">
+                    <img src="images/suite_4.jpg" onclick="changeImage(this, 5)">
+                </div>
+            </div>
+            <div class="dates-box">
+                <div class="date-item">
+                    <i class="fas fa-arrow-right"></i>
+                    <strong>25 Jun</strong>
+                </div>
+                <div class="date-item">
+                    <i class="fas fa-arrow-left"></i>
+                    <strong>27 Jun</strong>
+                </div>
+                <div class="date-item">
+                    <i class="fas fa-moon"></i>
+                    <strong>2 Noites</strong>
+                </div>
+            </div>
+            <div class="description">
+                <p>Suíte presidencial com terraço privado e vista espetacular da Baía de Kotor. Banheiro de mármol com amenidades de luxo supremo, acesso VIP ao spa, e serviços concierge 24h. Café da manhã completo incluído.</p>
+            </div>
+            <div class="pricing-box">
+                <div class="pricing-header">
+                    <span class="pricing-title">Valor da Suíte Premium</span>
+                </div>
+                <div class="price-group">
+                    <div class="group-label">Diárias</div>
+                    <div class="calc-row">
+                        <span>2 noites × $2.500</span>
+                        <span>$5.000</span>
+                    </div>
+                </div>
+                <div class="total-row">
+                    <span class="total-label">Total Presidential Suite</span>
+                    <span class="total-value">$5.000</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 6: Incluso -->
+        <div class="slide villa-slide">
+            <div class="villa-header">
+                <p class="section-label">Serviços</p>
+                <h2>O Que Está Incluído</h2>
+            </div>
+            <div class="amenities" style="grid-template-columns: 1fr;">
+                <div class="amenity">
+                    <i class="fas fa-check-circle"></i>
+                    <span><strong>Café da manhã</strong> - Buffet completo diariamente (nas suites)</span>
+                </div>
+                <div class="amenity">
+                    <i class="fas fa-check-circle"></i>
+                    <span><strong>Acesso ao Spa</strong> - Piscina infinity, sauna, tratamentos</span>
+                </div>
+                <div class="amenity">
+                    <i class="fas fa-check-circle"></i>
+                    <span><strong>Wi-Fi</strong> - Internet de alta velocidade em todo o resort</span>
+                </div>
+                <div class="amenity">
+                    <i class="fas fa-check-circle"></i>
+                    <span><strong>Serviço de Quarto</strong> - 24 horas</span>
+                </div>
+                <div class="amenity">
+                    <i class="fas fa-check-circle"></i>
+                    <span><strong>Concierge</strong> - Assistência em passeios e reservas</span>
+                </div>
+                <div class="amenity">
+                    <i class="fas fa-check-circle"></i>
+                    <span><strong>Estacionamento</strong> - Valet parking incluído</span>
+                </div>
+                <div class="amenity">
+                    <i class="fas fa-check-circle"></i>
+                    <span><strong>Taxes & Fees</strong> - Todos inclusos na proposta</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 7: Resumo -->
+        <div class="slide summary-slide">
+            <h2>Resumo do Investimento</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Deluxe Room - Sem Café (2 noites)</td>
+                        <td>$2.000</td>
+                    </tr>
+                    <tr>
+                        <td>Suite - Com Café (2 noites)</td>
+                        <td>$3.000</td>
+                    </tr>
+                    <tr>
+                        <td>Presidential Suite - Com Café (2 noites)</td>
+                        <td>$5.000</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td><strong>TOTAL (Melhor Opção)</strong></td>
+                        <td><strong>$5.000</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="text-align: center; color: #C4A484; font-size: 12px; margin-top: 20px;">
+                <i class="fas fa-info-circle"></i> Proposta válida por 24 horas
+            </p>
+        </div>
+        
+        <!-- Slide 8: Contato -->
+        <div class="slide closing-slide">
+            <h2>Wanderlust Turismo</h2>
+            <p>Estamos à disposição para tornar sua viagem a Montenegro uma experiência inesquecível.</p>
+            <p class="tagline">Sua próxima aventura começa aqui</p>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <div class="nav-buttons">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <span class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">8</span>
+        </span>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+            
+            document.getElementById('currentSlide').textContent = n + 1;
+            document.getElementById('prevBtn').disabled = n === 0;
+            document.getElementById('nextBtn').disabled = n === totalSlides - 1;
+        }
+        
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= 0 && currentSlide < totalSlides) {
+                showSlide(currentSlide);
+            }
+        }
+        
+        function changeImage(img, slideNum) {
+            const mainImage = document.getElementById('mainImage' + slideNum);
+            const thumbnails = img.parentElement.querySelectorAll('img');
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
+            img.classList.add('active');
+            mainImage.src = img.src;
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+        
+        // Initialize
+        document.getElementById('totalSlides').textContent = totalSlides;
+        showSlide(0);
+    </script>
+</body>
+</html>
